@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historical Charts</title>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .a4-page {
+            display: flex;
+            flex-direction: column;
+            height: 297mm;
+            width: 210mm;
+            background: white;
+            border: 1px dotted black;
+            padding: 20px 30px 0 30px;
+            box-sizing: border-box;
+        }
+
+        footer {
+            margin-bottom: 40px;
+        }
+
+        @media print {
+            @page {
+                margin: 0;
+                size: A4;
+            }
+
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                margin: 0;
+            }
+
+            .a4-page {
+                border: none !important;
+            }
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        footer {
+            font-size: 12px;
+            color: #777;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- page 3 -->
+    <div class="a4-page">
+        <header style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-size: 24px; font-weight: bold;">DPU</div>
+            <div style="font-size: 23px; color: #000; font-weight: bold;">Smart Report</div>
+        </header>
+        <div class="content">
+            <h1 style="text-align: center; margin: 10px 0; font-size: 27px;">Historical Charts</h1>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                <div
+                    style="background: #E1FFED; padding: 10px 10px 0 10px; border-radius: 7px; display: flex; flex-direction: column;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <h2 style="font-size: 16px; margin: 0;">Calcium Total, Serum</h2>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">Your Latest Result: <br>
+                                <strong style="color: #000; font-size: 20px;">9.6 mg/dl</strong>
+                            </p>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">On: <span>30th Oct,
+                                    2024</span></p>
+                        </div>
+                        <div style="width: 160px ; text-align: end;">
+                            <p
+                                style="color: #1eb397; margin: 0; font-weight: 600; font-size: 12px; margin-bottom: 20%;">
+                                • Everything Looks
+                                Good
+                            </p>
+                            <div
+                                style=" width: 160px; height: 7px; background-color: pink; border-radius: 20px; position: relative; background: linear-gradient(to right, #ff7a7a, #4cd5b6, #ff7a7a);">
+                                <div
+                                    style=" width: 15px;height: 15px;background-color: #4cd5b6;border-radius: 50%;position: absolute;left: 50px;top: -5px;border: 2px solid white">
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div id="chart1"></div>
+                </div>
+                <div
+                    style="background: #E1FFED; padding: 10px 10px 0 10px; border-radius: 7px; display: flex; flex-direction: column;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <h2 style="font-size: 16px; margin: 0;">Calcium Total, Serum</h2>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">Your Latest Result: <br>
+                                <strong style="color: #000; font-size: 20px;">9.6 mg/dl</strong>
+                            </p>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">On: <span>30th Oct,
+                                    2024</span></p>
+                        </div>
+                        <div style="width: 160px ; text-align: end;">
+                            <p
+                                style="color: #1eb397; margin: 0; font-weight: 600; font-size: 12px; margin-bottom: 20%;">
+                                • Everything Looks
+                                Good
+                            </p>
+                            <div
+                                style=" width: 160px; height: 7px; background-color: pink; border-radius: 20px; position: relative; background: linear-gradient(to right, #ff7a7a, #4cd5b6, #ff7a7a);">
+                                <div
+                                    style=" width: 15px;height: 15px;background-color: #4cd5b6;border-radius: 50%;position: absolute;left: 50px;top: -5px;border: 2px solid white">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chart2"></div>
+                </div>
+                <div
+                    style="background: #E1FFED; padding: 10px 10px 0 10px; border-radius: 7px; display: flex; flex-direction: column;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <h2 style="font-size: 16px; margin: 0;">Calcium Total, Serum</h2>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">Your Latest Result: <br>
+                                <strong style="color: #000; font-size: 20px;">9.6 mg/dl</strong>
+                            </p>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">On: <span>30th Oct,
+                                    2024</span></p>
+                        </div>
+                        <div style="width: 160px ; text-align: end;">
+                            <p
+                                style="color: #1eb397; margin: 0; font-weight: 600; font-size: 12px; margin-bottom: 20%;">
+                                • Everything Looks
+                                Good
+                            </p>
+                            <div
+                                style=" width: 160px; height: 7px; background-color: pink; border-radius: 20px; position: relative; background: linear-gradient(to right, #ff7a7a, #4cd5b6, #ff7a7a);">
+                                <div
+                                    style=" width: 15px;height: 15px;background-color: #4cd5b6;border-radius: 50%;position: absolute;left: 50px;top: -5px;border: 2px solid white">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chart3"></div>
+                </div>
+                <div
+                    style="background: #E1FFED; padding: 10px 10px 0 10px; border-radius: 7px; display: flex; flex-direction: column;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <h2 style="font-size: 16px; margin: 0;">Calcium Total, Serum</h2>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">Your Latest Result: <br>
+                                <strong style="color: #000; font-size: 20px;">9.6 mg/dl</strong>
+                            </p>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">On: <span>30th Oct,
+                                    2024</span></p>
+                        </div>
+                        <div style="width: 160px ; text-align: end;">
+                            <p
+                                style="color: #1eb397; margin: 0; font-weight: 600; font-size: 12px; margin-bottom: 20%;">
+                                • Everything Looks
+                                Good
+                            </p>
+                            <div
+                                style=" width: 160px; height: 7px; background-color: pink; border-radius: 20px; position: relative; background: linear-gradient(to right, #ff7a7a, #4cd5b6, #ff7a7a);">
+                                <div
+                                    style=" width: 15px;height: 15px;background-color: #4cd5b6;border-radius: 50%;position: absolute;left: 50px;top: -5px;border: 2px solid white">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chart4"></div>
+                </div>
+                <div
+                    style="background: #E1FFED; padding: 10px 10px 0 10px; border-radius: 7px; display: flex; flex-direction: column;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <h2 style="font-size: 16px; margin: 0;">Calcium Total, Serum</h2>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">Your Latest Result: <br>
+                                <strong style="color: #000; font-size: 20px;">9.6 mg/dl</strong>
+                            </p>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">On: <span>30th Oct,
+                                    2024</span></p>
+                        </div>
+                        <div style="width: 160px ; text-align: end;">
+                            <p
+                                style="color: #1eb397; margin: 0; font-weight: 600; font-size: 12px; margin-bottom: 20%;">
+                                • Everything Looks
+                                Good
+                            </p>
+                            <div
+                                style=" width: 160px; height: 7px; background-color: pink; border-radius: 20px; position: relative; background: linear-gradient(to right, #ff7a7a, #4cd5b6, #ff7a7a);">
+                                <div
+                                    style=" width: 15px;height: 15px;background-color: #4cd5b6;border-radius: 50%;position: absolute;left: 50px;top: -5px;border: 2px solid white">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chart5"></div>
+                </div>
+                <div
+                    style="background: #f8e6e6; padding: 10px 10px 0 10px; border-radius: 7px; display: flex; flex-direction: column;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <h2 style="font-size: 16px; margin: 0;">Calcium Total, Serum</h2>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">Your Latest Result: <br>
+                                <strong style="color: #000; font-size: 20px;">9.6 mg/dl</strong>
+                            </p>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">On: <span>30th Oct,
+                                    2024</span></p>
+                        </div>
+
+
+                        <div style="width: 160px ; text-align: end;">
+                            <p style="color: #ff4444; margin: 0; font-weight: 600; font-size: 12px;margin-bottom: 20%;">
+                                • Bad Condition</p>
+                            <div
+                                style=" width: 160px; height: 7px; background-color: pink; border-radius: 20px; position: relative; background: linear-gradient(to right, #ff7a7a, #4cd5b6, #ff7a7a);">
+                                <div
+                                    style=" width: 15px;height: 15px;background-color: #ff4444;border-radius: 50%;position: absolute;left: 120px;top: -5px;border: 2px solid white">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chart6"></div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>NY Patil Medical College, Pune, Maharashtra</p>
+            <p>www.mainwebsite.com</p>
+        </footer>
+    </div>
+
+    <!-- page 4 -->
+    <div class="a4-page" style="background-color:#f2f7ff !important">
+        <header style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-size: 24px; font-weight: bold;">DPU</div>
+            <div style="font-size: 23px; color: #000; font-weight: bold;">Smart Report</div>
+        </header>
+        <div class="content">
+            <h1 style="text-align: center; margin: 10px 0; font-size: 27px;">Historical Charts</h1>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                <div
+                    style="background:#fff; padding: 10px 10px 0 10px; border-radius: 7px; display: flex; flex-direction: column;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <h2 style="font-size: 16px; margin: 0;">Calcium Total, Serum</h2>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">Your Latest Result: <br>
+                                <strong style="color: #000; font-size: 20px;">9.6 mg/dl</strong>
+                            </p>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">On: <span>30th Oct,
+                                    2024</span></p>
+                        </div>
+                        <div style="width: 160px ; text-align: end;">
+                            <p
+                                style="color: #0165F2; margin: 0; font-weight: 600; font-size: 12px; margin-bottom: 20%;">
+                                • Everything Looks
+                                Good
+                            </p>
+                            <div
+                                style=" width: 160px; height: 7px; background-color: pink; border-radius: 20px; position: relative; background: linear-gradient(to right, #fa4547, #0162E8, #fa4547);">
+                                <div
+                                    style=" width: 15px;height: 15px;background-color: #0162E8;border-radius: 50%;position: absolute;left: 50px;top: -5px;border: 2px solid white">
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div id="chart7"></div>
+                </div>
+                <div
+                    style="background:#fff; padding: 10px 10px 0 10px; border-radius: 7px; display: flex; flex-direction: column;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <h2 style="font-size: 16px; margin: 0;">Calcium Total, Serum</h2>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">Your Latest Result: <br>
+                                <strong style="color: #000; font-size: 20px;">9.6 mg/dl</strong>
+                            </p>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">On: <span>30th Oct,
+                                    2024</span></p>
+                        </div>
+                        <div style="width: 160px ; text-align: end;">
+                            <p
+                                style="color: #0165F2; margin: 0; font-weight: 600; font-size: 12px; margin-bottom: 20%;">
+                                • Everything Looks
+                                Good
+                            </p>
+                            <div
+                                style=" width: 160px; height: 7px; background-color: pink; border-radius: 20px; position: relative; background: linear-gradient(to right, #fa4547, #0162E8, #fa4547);">
+                                <div
+                                    style=" width: 15px;height: 15px;background-color: #0162E8;border-radius: 50%;position: absolute;left: 50px;top: -5px;border: 2px solid white">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chart8"></div>
+                </div>
+                <div
+                    style="background:#fff; padding: 10px 10px 0 10px; border-radius: 7px; display: flex; flex-direction: column;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <h2 style="font-size: 16px; margin: 0;">Calcium Total, Serum</h2>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">Your Latest Result: <br>
+                                <strong style="color: #000; font-size: 20px;">9.6 mg/dl</strong>
+                            </p>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">On: <span>30th Oct,
+                                    2024</span></p>
+                        </div>
+                        <div style="width: 160px ; text-align: end;">
+                            <p
+                                style="color: #0165F2; margin: 0; font-weight: 600; font-size: 12px; margin-bottom: 20%;">
+                                • Everything Looks
+                                Good
+                            </p>
+                            <div
+                                style=" width: 160px; height: 7px; background-color: pink; border-radius: 20px; position: relative; background: linear-gradient(to right, #fa4547, #0162E8, #fa4547);">
+                                <div
+                                    style=" width: 15px;height: 15px;background-color: #0162E8;border-radius: 50%;position: absolute;left: 50px;top: -5px;border: 2px solid white">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chart9"></div>
+                </div>
+                <div
+                    style="background:#fff;padding: 10px 10px 0 10px; border-radius: 7px; display: flex; flex-direction: column;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <h2 style="font-size: 16px; margin: 0;">Calcium Total, Serum</h2>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">Your Latest Result: <br>
+                                <strong style="color: #000; font-size: 20px;">9.6 mg/dl</strong>
+                            </p>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">On: <span>30th Oct,
+                                    2024</span></p>
+                        </div>
+                        <div style="width: 160px ; text-align: end;">
+                            <p
+                                style="color: #0165F2; margin: 0; font-weight: 600; font-size: 12px; margin-bottom: 20%;">
+                                • Everything Looks
+                                Good
+                            </p>
+                            <div
+                                style=" width: 160px; height: 7px; background-color: pink; border-radius: 20px; position: relative; background: linear-gradient(to right, #fa4547, #0162E8, #fa4547);">
+                                <div
+                                    style=" width: 15px;height: 15px;background-color: #0162E8;border-radius: 50%;position: absolute;left: 50px;top: -5px;border: 2px solid white">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chart10"></div>
+                </div>
+                <div
+                    style="background:#fff; padding: 10px 10px 0 10px; border-radius: 7px; display: flex; flex-direction: column;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <h2 style="font-size: 16px; margin: 0;">Calcium Total, Serum</h2>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">Your Latest Result: <br>
+                                <strong style="color: #000; font-size: 20px;">9.6 mg/dl</strong>
+                            </p>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">On: <span>30th Oct,
+                                    2024</span></p>
+                        </div>
+                        <div style="width: 160px ; text-align: end;">
+                            <p
+                                style="color: #0165F2; margin: 0; font-weight: 600; font-size: 12px; margin-bottom: 20%;">
+                                • Everything Looks
+                                Good
+                            </p>
+                            <div
+                                style=" width: 160px; height: 7px; background-color: pink; border-radius: 20px; position: relative; background: linear-gradient(to right, #fa4547, #0162E8, #fa4547);">
+                                <div
+                                    style=" width: 15px;height: 15px;background-color: #0162E8;border-radius: 50%;position: absolute;left: 50px;top: -5px;border: 2px solid white">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chart11"></div>
+                </div>
+                <div
+                    style="background:#fff; padding: 10px 10px 0 10px; border-radius: 7px; display: flex; flex-direction: column;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <h2 style="font-size: 16px; margin: 0;">Calcium Total, Serum</h2>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">Your Latest Result: <br>
+                                <strong style="color: #000; font-size: 20px;">9.6 mg/dl</strong>
+                            </p>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">On: <span>30th Oct,
+                                    2024</span></p>
+                        </div>
+
+
+                        <div style="width: 160px ; text-align: end;">
+                            <p style="color: #ff4444; margin: 0; font-weight: 600; font-size: 12px;margin-bottom: 20%;">
+                                • Bad Condition</p>
+                            <div
+                                style=" width: 160px; height: 7px; background-color: pink; border-radius: 20px; position: relative; background: linear-gradient(to right, #fa4547, #0162E8, #fa4547);">
+                                <div
+                                    style=" width: 15px;height: 15px;background-color: #fa4547;border-radius: 50%;position: absolute;left: 50px;top: -5px;border: 2px solid white">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chart12"></div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>NY Patil Medical College, Pune, Maharashtra</p>
+            <p>www.mainwebsite.com</p>
+        </footer>
+    </div>
+    <!-- page 5 -->
+    <div class="a4-page">
+        <header style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-size: 24px; font-weight: bold;">DPU</div>
+            <div style="font-size: 23px; color: #000; font-weight: bold;">Smart Report</div>
+        </header>
+        <div class="content">
+            <h1 style="text-align: center; margin: 10px 0; font-size: 27px;">Historical Charts</h1>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                <div
+                    style="border:1px solid #aaa; padding: 10px 10px 0 10px; border-radius: 7px; display: flex; flex-direction: column;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <h2 style="font-size: 16px; margin: 0;">Calcium Total, Serum</h2>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">Your Latest Result: <br>
+                                <strong style="color: #000; font-size: 20px;">9.6 mg/dl</strong>
+                            </p>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">On: <span>30th Oct,
+                                    2024</span></p>
+                        </div>
+                        <div style="width: 160px ; text-align: end;">
+                            <p
+                                style="color: #0165F2; margin: 0; font-weight: 600; font-size: 12px; margin-bottom: 20%;">
+                                • Everything Looks
+                                Good
+                            </p>
+                            <div
+                                style=" width: 160px; height: 7px; background-color: pink; border-radius: 20px; position: relative; background: linear-gradient(to right, #fa4547, #0162E8, #fa4547);">
+                                <div
+                                    style=" width: 15px;height: 15px;background-color: #0162E8;border-radius: 50%;position: absolute;left: 50px;top: -5px;border: 2px solid white">
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div id="chart13"></div>
+                </div>
+                <div
+                    style="border:1px solid #aaa; padding: 10px 10px 0 10px; border-radius: 7px; display: flex; flex-direction: column;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <h2 style="font-size: 16px; margin: 0;">Calcium Total, Serum</h2>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">Your Latest Result: <br>
+                                <strong style="color: #000; font-size: 20px;">9.6 mg/dl</strong>
+                            </p>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">On: <span>30th Oct,
+                                    2024</span></p>
+                        </div>
+                        <div style="width: 160px ; text-align: end;">
+                            <p
+                                style="color: #0165F2; margin: 0; font-weight: 600; font-size: 12px; margin-bottom: 20%;">
+                                • Everything Looks
+                                Good
+                            </p>
+                            <div
+                                style=" width: 160px; height: 7px; background-color: pink; border-radius: 20px; position: relative; background: linear-gradient(to right, #fa4547, #0162E8, #fa4547);">
+                                <div
+                                    style=" width: 15px;height: 15px;background-color: #0162E8;border-radius: 50%;position: absolute;left: 50px;top: -5px;border: 2px solid white">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chart14"></div>
+                </div>
+                <div
+                    style="border:1px solid #aaa; padding: 10px 10px 0 10px; border-radius: 7px; display: flex; flex-direction: column;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <h2 style="font-size: 16px; margin: 0;">Calcium Total, Serum</h2>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">Your Latest Result: <br>
+                                <strong style="color: #000; font-size: 20px;">9.6 mg/dl</strong>
+                            </p>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">On: <span>30th Oct,
+                                    2024</span></p>
+                        </div>
+                        <div style="width: 160px ; text-align: end;">
+                            <p
+                                style="color: #0165F2; margin: 0; font-weight: 600; font-size: 12px; margin-bottom: 20%;">
+                                • Everything Looks
+                                Good
+                            </p>
+                            <div
+                                style=" width: 160px; height: 7px; background-color: pink; border-radius: 20px; position: relative; background: linear-gradient(to right, #fa4547, #0162E8, #fa4547);">
+                                <div
+                                    style=" width: 15px;height: 15px;background-color: #0162E8;border-radius: 50%;position: absolute;left: 50px;top: -5px;border: 2px solid white">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chart15"></div>
+                </div>
+                <div
+                    style="border:1px solid #aaa; padding: 10px 10px 0 10px; border-radius: 7px; display: flex; flex-direction: column;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <h2 style="font-size: 16px; margin: 0;">Calcium Total, Serum</h2>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">Your Latest Result: <br>
+                                <strong style="color: #000; font-size: 20px;">9.6 mg/dl</strong>
+                            </p>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">On: <span>30th Oct,
+                                    2024</span></p>
+                        </div>
+                        <div style="width: 160px ; text-align: end;">
+                            <p
+                                style="color: #0165F2; margin: 0; font-weight: 600; font-size: 12px; margin-bottom: 20%;">
+                                • Everything Looks
+                                Good
+                            </p>
+                            <div
+                                style=" width: 160px; height: 7px; background-color: pink; border-radius: 20px; position: relative; background: linear-gradient(to right, #fa4547, #0162E8, #fa4547);">
+                                <div
+                                    style=" width: 15px;height: 15px;background-color: #0162E8;border-radius: 50%;position: absolute;left: 50px;top: -5px;border: 2px solid white">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chart16"></div>
+                </div>
+                <div
+                    style="border:1px solid #aaa; padding: 10px 10px 0 10px; border-radius: 7px; display: flex; flex-direction: column;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <h2 style="font-size: 16px; margin: 0;">Calcium Total, Serum</h2>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">Your Latest Result: <br>
+                                <strong style="color: #000; font-size: 20px;">9.6 mg/dl</strong>
+                            </p>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">On: <span>30th Oct,
+                                    2024</span></p>
+                        </div>
+                        <div style="width: 160px ; text-align: end;">
+                            <p
+                                style="color: #0165F2; margin: 0; font-weight: 600; font-size: 12px; margin-bottom: 20%;">
+                                • Everything Looks
+                                Good
+                            </p>
+                            <div
+                                style=" width: 160px; height: 7px; background-color: pink; border-radius: 20px; position: relative; background: linear-gradient(to right, #fa4547, #0162E8, #fa4547);">
+                                <div
+                                    style=" width: 15px;height: 15px;background-color: #0162E8;border-radius: 50%;position: absolute;left: 50px;top: -5px;border: 2px solid white">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chart17"></div>
+                </div>
+                <div
+                    style="border:1px solid #aaa; padding: 10px 10px 0 10px; border-radius: 7px; display: flex; flex-direction: column;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <h2 style="font-size: 16px; margin: 0;">Calcium Total, Serum</h2>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">Your Latest Result: <br>
+                                <strong style="color: #000; font-size: 20px;">9.6 mg/dl</strong>
+                            </p>
+                            <p style="margin: 10px 0 0px 0; font-size: 12px; color: #999;">On: <span>30th Oct,
+                                    2024</span></p>
+                        </div>
+
+
+                        <div style="width: 160px ; text-align: end;">
+                            <p style="color: #ff4444; margin: 0; font-weight: 600; font-size: 12px;margin-bottom: 20%;">
+                                • Bad Condition</p>
+                            <div
+                                style=" width: 160px; height: 7px; background-color: pink; border-radius: 20px; position: relative; background: linear-gradient(to right, #fa4547, #0162E8, #fa4547);">
+                                <div
+                                    style=" width: 15px;height: 15px;background-color: #fa4547;border-radius: 50%;position: absolute;left: 50px;top: -5px;border: 2px solid white">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chart18"></div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>NY Patil Medical College, Pune, Maharashtra</p>
+            <p>www.mainwebsite.com</p>
+        </footer>
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
